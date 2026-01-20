@@ -67,7 +67,6 @@
       border-left: 5px solid #111;
     }
 
-    /* NEW */
     select {
       padding: 8px;
       font-size: 16px;
@@ -76,6 +75,31 @@
 
     .class-content {
       display: none;
+    }
+
+    /* Chapter toggle */
+    .toggle-btn {
+      margin-top: 10px;
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 8px 14px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .toggle-btn:hover {
+      background: #333;
+    }
+
+    .chapter-list {
+      display: none;
+      margin-top: 15px;
+      padding-left: 20px;
+    }
+
+    .chapter-list li {
+      margin-bottom: 6px;
     }
   </style>
 </head>
@@ -103,7 +127,6 @@
     REAL Learning teaches mathematics from first principles.
   </p>
 
-  <!-- CLASS SELECTOR -->
   <label for="classSelect"><strong>Select Class:</strong></label><br>
   <select id="classSelect" onchange="showClassContent()">
     <option value="">-- Choose Class --</option>
@@ -116,54 +139,64 @@
   </select>
 </section>
 
-<!-- CLASS-WISE CONTENT -->
+<!-- CLASS 5 -->
 
 <section id="class5" class="block class-content">
   <h2>Class 5 Mathematics</h2>
+
   <p>
-    Numbers, factors, multiples, fractions, basic geometry,
-    and introduction to logical reasoning through patterns.
+    Class 5 mathematics builds intuition through travel, measurement,
+    patterns, time, data, and spatial reasoning rooted in daily life.
   </p>
+
+  <button class="toggle-btn" onclick="toggleChapters('chapters5')">
+    View Chapter Index
+  </button>
+
+  <ul id="chapters5" class="chapter-list">
+    <li>We the Travellers – I</li>
+    <li>Fractions</li>
+    <li>Angles as Turns</li>
+    <li>We the Travellers – II</li>
+    <li>Far and Near</li>
+    <li>The Dairy Farm</li>
+    <li>Shapes and Patterns</li>
+    <li>Weight and Capacity</li>
+    <li>Coconut Farm</li>
+    <li>Symmetrical Designs</li>
+    <li>Grandmother’s Quilt</li>
+    <li>Racing Seconds</li>
+    <li>Animal Jumps</li>
+    <li>Maps and Locations</li>
+    <li>Data Through Pictures</li>
+  </ul>
 </section>
+
+<!-- OTHER CLASSES (placeholders, untouched logic) -->
 
 <section id="class6" class="block class-content">
   <h2>Class 6 Mathematics</h2>
-  <p>
-    Natural numbers, integers, ratios, basic algebra,
-    angles, symmetry, and data handling.
-  </p>
+  <p>Foundations of number systems, ratios, algebra, geometry, and data.</p>
 </section>
 
 <section id="class7" class="block class-content">
   <h2>Class 7 Mathematics</h2>
-  <p>
-    Rational numbers, linear expressions, congruence,
-    practical geometry, and proportional reasoning.
-  </p>
+  <p>Rational numbers, expressions, congruence, and proportional reasoning.</p>
 </section>
 
 <section id="class8" class="block class-content">
   <h2>Class 8 Mathematics</h2>
-  <p>
-    Linear equations, squares & cubes, mensuration,
-    coordinate geometry, and visual proof methods.
-  </p>
+  <p>Linear equations, mensuration, graphs, and visual proof methods.</p>
 </section>
 
 <section id="class9" class="block class-content">
   <h2>Class 9 Mathematics</h2>
-  <p>
-    Number systems, polynomials, Euclidean geometry,
-    coordinate geometry, statistics, and proof-based thinking.
-  </p>
+  <p>Polynomials, Euclidean geometry, coordinate geometry, and statistics.</p>
 </section>
 
 <section id="class10" class="block class-content">
   <h2>Class 10 Mathematics</h2>
-  <p>
-    Real numbers, quadratic equations, trigonometry,
-    coordinate geometry, calculus intuition, and probability.
-  </p>
+  <p>Quadratics, trigonometry, coordinate geometry, probability.</p>
 </section>
 
 <footer>
@@ -172,13 +205,18 @@
 
 <script>
   function showClassContent() {
-    const allSections = document.querySelectorAll('.class-content');
-    allSections.forEach(section => section.style.display = 'none');
+    document.querySelectorAll('.class-content')
+      .forEach(section => section.style.display = 'none');
 
     const selectedClass = document.getElementById('classSelect').value;
     if (selectedClass) {
       document.getElementById('class' + selectedClass).style.display = 'block';
     }
+  }
+
+  function toggleChapters(id) {
+    const el = document.getElementById(id);
+    el.style.display = (el.style.display === 'block') ? 'none' : 'block';
   }
 </script>
 
