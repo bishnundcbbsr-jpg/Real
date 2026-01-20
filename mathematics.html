@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Mathematics | REAL Learning</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -13,10 +14,7 @@
       line-height: 1.6;
     }
 
-    header {
-      background: #111;
-      color: white;
-    }
+    header { background: #111; color: #fff; }
 
     section {
       padding: 40px 20px;
@@ -24,33 +22,19 @@
       margin: auto;
     }
 
-    h1, h2, h3 {
-      margin-top: 0;
-    }
-
     .navbar {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       background: #000;
       padding: 12px 20px;
     }
 
-    .logo {
-      color: white;
-      font-weight: bold;
-      font-size: 18px;
-    }
+    .logo { color: white; font-weight: bold; }
 
     .menu a {
       color: white;
       margin-left: 15px;
       text-decoration: none;
-      font-size: 14px;
-    }
-
-    .menu a:hover {
-      text-decoration: underline;
     }
 
     footer {
@@ -67,40 +51,20 @@
       border-left: 5px solid #111;
     }
 
-    select {
-      padding: 8px;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-
-    .class-content {
-      display: none;
-    }
-
-    /* Chapter toggle */
     .toggle-btn {
-      margin-top: 10px;
       background: #111;
       color: #fff;
       border: none;
       padding: 8px 14px;
       cursor: pointer;
-      font-size: 14px;
+      margin-top: 8px;
     }
 
-    .toggle-btn:hover {
-      background: #333;
-    }
+    .toggle-btn:hover { background: #333; }
 
-    .chapter-list {
-      display: none;
-      margin-top: 15px;
-      padding-left: 20px;
-    }
+    .class-content { display: none; }
 
-    .chapter-list li {
-      margin-bottom: 6px;
-    }
+    .chapter-list { display: none; margin-top: 15px; }
   </style>
 </head>
 
@@ -112,42 +76,23 @@
     <div class="menu">
       <a href="index.html">Home</a>
       <a href="subjects.html">Subjects</a>
-      <a href="index.html#method">Method</a>
-      <a href="index.html#about">About</a>
-      <a href="index.html#contact">Contact</a>
     </div>
   </nav>
 </header>
 
 <section>
   <h1>Mathematics</h1>
-  <p>
-    Mathematics is not about speed or tricks.
-    It is the study of structure, relationships, and logical necessity.
-    REAL Learning teaches mathematics from first principles.
-  </p>
+  <p>Mathematics is the study of structure, relationships, and necessity.</p>
 
-  <label for="classSelect"><strong>Select Class:</strong></label><br>
+  <label><strong>Select Class:</strong></label><br>
   <select id="classSelect" onchange="showClassContent()">
     <option value="">-- Choose Class --</option>
     <option value="5">Class 5</option>
-    <option value="6">Class 6</option>
-    <option value="7">Class 7</option>
-    <option value="8">Class 8</option>
-    <option value="9">Class 9</option>
-    <option value="10">Class 10</option>
   </select>
 </section>
 
-<!-- CLASS 5 -->
-
 <section id="class5" class="block class-content">
   <h2>Class 5 Mathematics</h2>
-
-  <p>
-    Class 5 mathematics builds intuition through travel, measurement,
-    patterns, time, data, and spatial reasoning rooted in daily life.
-  </p>
 
   <button class="toggle-btn" onclick="toggleChapters('chapters5')">
     View Chapter Index
@@ -155,52 +100,32 @@
 
   <ul id="chapters5" class="chapter-list">
     <li>
-  <button class="toggle-btn" onclick="openChapter('travellers1')">
-    We the Travellers – I
-  </button>
-</li>
-    <li>Fractions</li>
-    <li>Angles as Turns</li>
-    <li>We the Travellers – II</li>
-    <li>Far and Near</li>
-    <li>The Dairy Farm</li>
-    <li>Shapes and Patterns</li>
-    <li>Weight and Capacity</li>
-    <li>Coconut Farm</li>
-    <li>Symmetrical Designs</li>
-    <li>Grandmother’s Quilt</li>
-    <li>Racing Seconds</li>
-    <li>Animal Jumps</li>
-    <li>Maps and Locations</li>
-    <li>Data Through Pictures</li>
+      <button class="toggle-btn" onclick="openChapter('travellers1')">
+        We the Travellers – I
+      </button>
+    </li>
   </ul>
 </section>
 
-<!-- OTHER CLASSES (placeholders, untouched logic) -->
+<!-- MODULE VIEWER -->
+<section id="chapterModuleBox" class="block" style="display:none;">
+  <h3 id="chapterTitle"></h3>
 
-<section id="class6" class="block class-content">
-  <h2>Class 6 Mathematics</h2>
-  <p>Foundations of number systems, ratios, algebra, geometry, and data.</p>
-</section>
+  <div id="moduleList"></div>
 
-<section id="class7" class="block class-content">
-  <h2>Class 7 Mathematics</h2>
-  <p>Rational numbers, expressions, congruence, and proportional reasoning.</p>
-</section>
+  <div id="moduleEngine" style="display:none; margin-top:20px;">
+    <h4 id="mTitle"></h4>
+    <p id="mText"></p>
 
-<section id="class8" class="block class-content">
-  <h2>Class 8 Mathematics</h2>
-  <p>Linear equations, mensuration, graphs, and visual proof methods.</p>
-</section>
+    <p><strong>Question:</strong></p>
+    <p id="mQuestion"></p>
 
-<section id="class9" class="block class-content">
-  <h2>Class 9 Mathematics</h2>
-  <p>Polynomials, Euclidean geometry, coordinate geometry, and statistics.</p>
-</section>
+    <input id="mAnswer" style="width:100%; padding:8px;">
+    <button class="toggle-btn" onclick="submitModuleAnswer()">Submit</button>
 
-<section id="class10" class="block class-content">
-  <h2>Class 10 Mathematics</h2>
-  <p>Quadratics, trigonometry, coordinate geometry, probability.</p>
+    <p id="mFeedback"></p>
+    <p><strong>Score:</strong> <span id="mScore">0</span></p>
+  </div>
 </section>
 
 <footer>
@@ -208,21 +133,78 @@
 </footer>
 
 <script>
-  function showClassContent() {
-    document.querySelectorAll('.class-content')
-      .forEach(section => section.style.display = 'none');
+/* ===== CORE PAGE ===== */
+function showClassContent() {
+  document.querySelectorAll('.class-content')
+    .forEach(s => s.style.display = 'none');
+  const c = document.getElementById('classSelect').value;
+  if (c) document.getElementById('class' + c).style.display = 'block';
+}
 
-    const selectedClass = document.getElementById('classSelect').value;
-    if (selectedClass) {
-      document.getElementById('class' + selectedClass).style.display = 'block';
-    }
-  }
+function toggleChapters(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
 
-  function toggleChapters(id) {
-    const el = document.getElementById(id);
-    el.style.display = (el.style.display === 'block') ? 'none' : 'block';
+/* ===== GLOBAL MODULE REGISTRY ===== */
+window.REAL_MODULES = {};
+
+/* ===== MODULE ENGINE (FROZEN) ===== */
+let activeChapter, activeModule, lessonIndex = 0, score = 0;
+
+function openChapter(key) {
+  activeChapter = REAL_MODULES[key];
+  if (!activeChapter) return alert("Modules coming soon.");
+
+  document.getElementById("chapterModuleBox").style.display = "block";
+  document.getElementById("chapterTitle").innerText = activeChapter.title;
+
+  const list = document.getElementById("moduleList");
+  list.innerHTML = "";
+
+  activeChapter.modules.forEach((m, i) => {
+    const b = document.createElement("button");
+    b.className = "toggle-btn";
+    b.innerText = m.name;
+    b.onclick = () => startModule(i);
+    list.appendChild(b);
+  });
+}
+
+function startModule(i) {
+  activeModule = activeChapter.modules[i];
+  lessonIndex = 0;
+  score = 0;
+  document.getElementById("mScore").innerText = score;
+  document.getElementById("moduleEngine").style.display = "block";
+  loadLesson();
+}
+
+function loadLesson() {
+  const l = activeModule.lessons[lessonIndex];
+  mTitle.innerText = l.title;
+  mText.innerText = l.text;
+  mQuestion.innerText = l.question;
+  mAnswer.value = "";
+  mFeedback.innerText = "";
+}
+
+function submitModuleAnswer() {
+  const a = mAnswer.value;
+  if (activeModule.lessons[lessonIndex].check(a)) {
+    score += 10;
+    mScore.innerText = score;
+    lessonIndex++;
+    lessonIndex < activeModule.lessons.length ? loadLesson()
+      : (mTitle.innerText = "🎉 Module Completed");
+  } else {
+    mFeedback.innerText = "Try again.";
   }
+}
 </script>
+
+<!-- MODULE FILES (ONLY THIS GROWS) -->
+<script src="modules/class5_travellers1.js"></script>
 
 </body>
 </html>
