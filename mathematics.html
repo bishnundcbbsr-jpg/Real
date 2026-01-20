@@ -6,65 +6,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f5f5f5;
-      color: #222;
-      line-height: 1.6;
-    }
-
+    body { font-family: Arial, sans-serif; margin: 0; background: #f5f5f5; color: #222; line-height: 1.6; }
     header { background: #111; color: #fff; }
-
-    section {
-      padding: 40px 20px;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      background: #000;
-      padding: 12px 20px;
-    }
-
+    section { padding: 40px 20px; max-width: 900px; margin: auto; }
+    .navbar { display: flex; justify-content: space-between; background: #000; padding: 12px 20px; }
     .logo { color: white; font-weight: bold; }
-
-    .menu a {
-      color: white;
-      margin-left: 15px;
-      text-decoration: none;
-    }
-
-    footer {
-      background: #222;
-      color: #ccc;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .block {
-      background: white;
-      padding: 20px;
-      margin-bottom: 20px;
-      border-left: 5px solid #111;
-    }
-
-    .toggle-btn {
-      background: #111;
-      color: #fff;
-      border: none;
-      padding: 8px 14px;
-      cursor: pointer;
-      margin-top: 8px;
-    }
-
+    .menu a { color: white; margin-left: 15px; text-decoration: none; }
+    footer { background: #222; color: #ccc; text-align: center; padding: 20px; }
+    .block { background: white; padding: 20px; margin-bottom: 20px; border-left: 5px solid #111; }
+    .toggle-btn { background: #111; color: #fff; border: none; padding: 8px 14px; cursor: pointer; margin-top: 8px; }
     .toggle-btn:hover { background: #333; }
-
     .class-content { display: none; }
-
-    .chapter-list { display: none; margin-top: 15px; }
+    .chapter-list { display: none; margin-top: 15px; padding-left: 20px; }
   </style>
 </head>
 
@@ -94,9 +47,7 @@
 <section id="class5" class="block class-content">
   <h2>Class 5 Mathematics</h2>
 
-  <button class="toggle-btn" onclick="toggleChapters('chapters5')">
-    View Chapter Index
-  </button>
+  <button class="toggle-btn" onclick="toggleChapters('chapters5')">View Chapter Index</button>
 
   <ul id="chapters5" class="chapter-list">
     <li>
@@ -133,10 +84,9 @@
 </footer>
 
 <script>
-/* ===== CORE PAGE ===== */
+/* ===== CLASS SELECTION & TOGGLE ===== */
 function showClassContent() {
-  document.querySelectorAll('.class-content')
-    .forEach(s => s.style.display = 'none');
+  document.querySelectorAll('.class-content').forEach(s => s.style.display = 'none');
   const c = document.getElementById('classSelect').value;
   if (c) document.getElementById('class' + c).style.display = 'block';
 }
@@ -146,10 +96,10 @@ function toggleChapters(id) {
   el.style.display = el.style.display === 'block' ? 'none' : 'block';
 }
 
-/* ===== GLOBAL MODULE REGISTRY ===== */
-window.REAL_MODULES = {};
+/* ===== MODULE REGISTRY (SAFE FOR MULTIPLE FILES) ===== */
+window.REAL_MODULES = window.REAL_MODULES || {};
 
-/* ===== MODULE ENGINE (FROZEN) ===== */
+/* ===== MODULE ENGINE ===== */
 let activeChapter, activeModule, lessonIndex = 0, score = 0;
 
 function openChapter(key) {
@@ -161,7 +111,6 @@ function openChapter(key) {
 
   const list = document.getElementById("moduleList");
   list.innerHTML = "";
-
   activeChapter.modules.forEach((m, i) => {
     const b = document.createElement("button");
     b.className = "toggle-btn";
@@ -176,34 +125,45 @@ function startModule(i) {
   lessonIndex = 0;
   score = 0;
   document.getElementById("mScore").innerText = score;
+  document.getElementById("mAnswer").style.display = "block";
   document.getElementById("moduleEngine").style.display = "block";
   loadLesson();
 }
 
 function loadLesson() {
   const l = activeModule.lessons[lessonIndex];
-  mTitle.innerText = l.title;
-  mText.innerText = l.text;
-  mQuestion.innerText = l.question;
-  mAnswer.value = "";
-  mFeedback.innerText = "";
+  document.getElementById("mTitle").innerText = l.title;
+  document.getElementById("mText").innerText = l.text;
+  document.getElementById("mQuestion").innerText = l.question;
+  document.getElementById("mAnswer").value = "";
+  document.getElementById("mFeedback").innerText = "";
 }
 
 function submitModuleAnswer() {
-  const a = mAnswer.value;
-  if (activeModule.lessons[lessonIndex].check(a)) {
-    score += 10;
-    mScore.innerText = score;
+  const a = document.getElementById("mAnswer").value;
+  const lesson = activeModule.lessons[lessonIndex];
+
+  if (lesson.check(a)) {
+    score += lesson.points || 10; // default 10 points
+    document.getElementById("mScore").innerText = score;
     lessonIndex++;
-    lessonIndex < activeModule.lessons.length ? loadLesson()
-      : (mTitle.innerText = "🎉 Module Completed");
+    if (lessonIndex < activeModule.lessons.length) {
+      loadLesson();
+      document.getElementById("mFeedback").innerText = "✅ Correct! Lesson unlocked.";
+    } else {
+      document.getElementById("mTitle").innerText = "🎉 Module Completed";
+      document.getElementById("mText").innerText = "You have completed this module.";
+      document.getElementById("mQuestion").innerText = "";
+      document.getElementById("mAnswer").style.display = "none";
+      document.getElementById("mFeedback").innerText = "";
+    }
   } else {
-    mFeedback.innerText = "Try again.";
+    document.getElementById("mFeedback").innerText = "❌ Try again.";
   }
 }
 </script>
 
-<!-- MODULE FILES (ONLY THIS GROWS) -->
+<!-- LOAD MODULE FILES -->
 <script src="modules/class5_travellers1.js"></script>
 
 </body>
