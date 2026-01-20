@@ -66,6 +66,17 @@
       margin-bottom: 20px;
       border-left: 5px solid #111;
     }
+
+    /* NEW */
+    select {
+      padding: 8px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .class-content {
+      display: none;
+    }
   </style>
 </head>
 
@@ -91,66 +102,85 @@
     It is the study of structure, relationships, and logical necessity.
     REAL Learning teaches mathematics from first principles.
   </p>
+
+  <!-- CLASS SELECTOR -->
+  <label for="classSelect"><strong>Select Class:</strong></label><br>
+  <select id="classSelect" onchange="showClassContent()">
+    <option value="">-- Choose Class --</option>
+    <option value="5">Class 5</option>
+    <option value="6">Class 6</option>
+    <option value="7">Class 7</option>
+    <option value="8">Class 8</option>
+    <option value="9">Class 9</option>
+    <option value="10">Class 10</option>
+  </select>
 </section>
 
-<section class="block">
-  <h2>How We Teach Mathematics</h2>
-  <ul>
-    <li>Concepts before formulas</li>
-    <li>Why definitions exist</li>
-    <li>Logic before computation</li>
-    <li>Errors as learning tools</li>
-  </ul>
-</section>
+<!-- CLASS-WISE CONTENT -->
 
-<section class="block">
-  <h2>Foundations</h2>
+<section id="class5" class="block class-content">
+  <h2>Class 5 Mathematics</h2>
   <p>
-    Counting, number systems, and abstraction arise from
-    real human needs. Students learn how natural numbers,
-    zero, negatives, fractions, and infinity emerged.
+    Numbers, factors, multiples, fractions, basic geometry,
+    and introduction to logical reasoning through patterns.
   </p>
 </section>
 
-<section class="block">
-  <h2>Algebra</h2>
+<section id="class6" class="block class-content">
+  <h2>Class 6 Mathematics</h2>
   <p>
-    Algebra is symbolic reasoning.
-    Variables represent generality, not mystery.
-    Equations are statements of balance and constraint.
+    Natural numbers, integers, ratios, basic algebra,
+    angles, symmetry, and data handling.
   </p>
 </section>
 
-<section class="block">
-  <h2>Geometry</h2>
+<section id="class7" class="block class-content">
+  <h2>Class 7 Mathematics</h2>
   <p>
-    Geometry connects space, perception, and proof.
-    From Euclid to coordinate geometry,
-    students see how shapes become logic.
+    Rational numbers, linear expressions, congruence,
+    practical geometry, and proportional reasoning.
   </p>
 </section>
 
-<section class="block">
-  <h2>Calculus (Intuitive First)</h2>
+<section id="class8" class="block class-content">
+  <h2>Class 8 Mathematics</h2>
   <p>
-    Change, motion, and accumulation are introduced
-    intuitively before limits and symbols.
-    Calculus becomes meaningful, not mechanical.
+    Linear equations, squares & cubes, mensuration,
+    coordinate geometry, and visual proof methods.
   </p>
 </section>
 
-<section class="block">
-  <h2>Problem Solving</h2>
+<section id="class9" class="block class-content">
+  <h2>Class 9 Mathematics</h2>
   <p>
-    Problems are treated as thinking exercises,
-    not race conditions. Multiple approaches
-    are encouraged and discussed.
+    Number systems, polynomials, Euclidean geometry,
+    coordinate geometry, statistics, and proof-based thinking.
+  </p>
+</section>
+
+<section id="class10" class="block class-content">
+  <h2>Class 10 Mathematics</h2>
+  <p>
+    Real numbers, quadratic equations, trigonometry,
+    coordinate geometry, calculus intuition, and probability.
   </p>
 </section>
 
 <footer>
   <p>© 2026 REAL Learning</p>
 </footer>
+
+<script>
+  function showClassContent() {
+    const allSections = document.querySelectorAll('.class-content');
+    allSections.forEach(section => section.style.display = 'none');
+
+    const selectedClass = document.getElementById('classSelect').value;
+    if (selectedClass) {
+      document.getElementById('class' + selectedClass).style.display = 'block';
+    }
+  }
+</script>
 
 </body>
 </html>
