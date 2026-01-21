@@ -9,9 +9,6 @@ if (!window.REAL_MODULES["travellers1"]) {
   };
 }
 
-// ===============================
-// MODULE 3: COUNTING & NUMBER SYSTEMS
-// ===============================
 window.REAL_MODULES["travellers1"].modules.push({
   id: "module3",
   name: "Module 3: Counting Systems & Number Sense",
@@ -20,49 +17,49 @@ window.REAL_MODULES["travellers1"].modules.push({
     {
       title: "Lesson 1: Indian System of Counting",
       text:
-        "In the Indian system, numbers are grouped as Ones, Tens, Hundreds, Thousands, Lakhs, and Crores. Commas are placed differently compared to the western system.",
+        "In the Indian system, numbers are written using Ones, Tens, Hundreds, Thousands, Lakhs, and Crores. Commas are placed after three digits from the right, then every two digits.",
       question:
         "Write 1250000 in the Indian system using commas.",
       points: 10,
-      check: a => a.replace(/\s/g,"") === "12,50,000"
+      check: a => a.replace(/\s/g, "") === "12,50,000"
     },
 
     {
       title: "Lesson 2: Western System of Counting",
       text:
-        "In the western system, numbers are grouped as Ones, Tens, Hundreds, Thousands, Millions, and Billions. Commas are placed after every three digits from the right.",
+        "In the western system, numbers are grouped into Ones, Tens, Hundreds, Thousands, Millions, etc. Commas are placed after every three digits.",
       question:
         "Write 1250000 in the western system using commas.",
       points: 10,
-      check: a => a.replace(/\s/g,"") === "1,250,000"
+      check: a => a.replace(/\s/g, "") === "1,250,000"
     },
 
     {
-      title: "Lesson 3: Comparing Indian and Western Systems",
+      title: "Lesson 3: Indian vs Western System",
       text:
-        "The value of the number remains the same, but the naming and comma placement change between Indian and western systems.",
+        "The value of a number does not change when written in different systems. Only the naming and comma placement change.",
       question:
-        "Does the value of 1,250,000 change when written as 12,50,000? (yes/no)",
+        "Does 12,50,000 represent the same value as 1,250,000? (yes/no)",
       points: 10,
-      check: a => a.trim().toLowerCase() === "no"
+      check: a => a.trim().toLowerCase() === "yes"
     },
 
     {
-      title: "Lesson 4: Numbers on a Number Line",
+      title: "Lesson 4: Number Line – Position of Numbers",
       text:
-        "A number line shows numbers in order. Smaller numbers lie to the left, larger numbers to the right.",
+        "A number line shows numbers in order from left to right. Smaller numbers are on the left and bigger numbers are on the right.\n\nExample:\n450 ---- 460 ---- 470 ---- 480 ---- 490 ---- 500",
       question:
-        "Which is greater: 487 or 492?",
+        "On the number line above, which number is closer to 500: 470 or 490?",
       points: 10,
-      check: a => a.trim() === "492"
+      check: a => a.trim() === "490"
     },
 
     {
-      title: "Lesson 5: Nearest 10, 100, and 1000",
+      title: "Lesson 5: Rounding on a Number Line",
       text:
-        "Rounding helps estimate numbers. Look at the digit next to the place value to decide whether to round up or down.",
+        "Rounding can be understood using a number line. A number is rounded to the nearest 10, 100, or 1000 based on which it is closer to.",
       question:
-        "Round 764 to the nearest 100.",
+        "Using a number line, round 764 to the nearest 100.",
       points: 10,
       check: a => a.trim() === "800"
     },
@@ -70,18 +67,17 @@ window.REAL_MODULES["travellers1"].modules.push({
     {
       title: "Lesson 6: Ascending and Descending Order",
       text:
-        "Ascending order means smallest to largest. Descending order means largest to smallest.",
+        "Numbers increase from left to right on a number line. This helps us arrange numbers in ascending and descending order.",
       question:
-        "Write 340, 120, 560 in ascending order.",
+        "Arrange 340, 120, 560 in ascending order.",
       points: 10,
-      check: a =>
-          a.replace(/\s/g,"") === "120,340,560"
+      check: a => a.replace(/\s/g, "") === "120,340,560"
     },
 
     {
-      title: "Lesson 7: Converting Tens, Hundreds, and Thousands",
+      title: "Lesson 7: Tens, Hundreds and Thousands Conversion",
       text:
-        "10 tens make 1 hundred, 10 hundreds make 1 thousand. Understanding these conversions helps solve word problems.",
+        "10 tens make 1 hundred and 10 hundreds make 1 thousand. These relationships help in solving word problems.",
       question:
         "How many tens are there in 300?",
       points: 10,
